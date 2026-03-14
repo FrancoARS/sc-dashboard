@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   SC COMMAND DASHBOARD — THEME SYSTEM
+   Light = Terran Command (steel gray + amber)
+   Dark  = Protoss Nexus  (deep space + cyan glow)
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* --- Terran Command (Light) --- */
+    --background: 210 20% 92%;       /* #e4e9ed steel mist */
+    --foreground: 210 25% 15%;       /* dark steel */
+
+    --card: 210 15% 88%;
+    --card-foreground: 210 25% 15%;
+
+    --popover: 210 15% 88%;
+    --popover-foreground: 210 25% 15%;
+
+    --primary: 200 60% 40%;          /* #2980b9 terran blue */
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 210 10% 75%;
+    --secondary-foreground: 210 25% 15%;
+
+    --muted: 210 10% 82%;
+    --muted-foreground: 210 15% 45%;
+
+    --accent: 35 90% 55%;            /* #f39c12 amber */
+    --accent-foreground: 210 25% 10%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 15% 75%;
+    --input: 210 15% 75%;
+    --ring: 200 60% 40%;
+
+    --radius: 0.375rem;
+
+    /* Sidebar */
+    --sidebar-background: 210 20% 85%;
+    --sidebar-foreground: 210 25% 15%;
+    --sidebar-primary: 200 60% 40%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 210 15% 78%;
+    --sidebar-accent-foreground: 210 25% 15%;
+    --sidebar-border: 210 15% 70%;
+    --sidebar-ring: 200 60% 40%;
+
+    /* SC custom */
+    --sc-bg: #dde3e8;
+    --sc-surface: #c8d0d8;
+    --sc-border: #546e7a;
+    --sc-border-glow: rgba(84, 110, 122, 0.4);
+    --sc-accent: #2980b9;
+    --sc-accent-glow: rgba(41, 128, 185, 0.35);
+    --sc-amber: #f39c12;
+    --sc-amber-glow: rgba(243, 156, 18, 0.35);
+    --sc-text: #1c2a35;
+    --sc-text-muted: #546e7a;
+    --sc-danger: #c0392b;
+    --sc-success: #27ae60;
+    --sc-glow: 0 0 6px rgba(41,128,185,0.3), 0 2px 8px rgba(0,0,0,0.15);
+    --sc-corner: #546e7a;
+  }
+
+  .dark {
+    /* --- Protoss Nexus (Dark) --- */
+    --background: 225 35% 8%;        /* #0a0e1a deep space */
+    --foreground: 185 80% 90%;       /* #c8f4f9 psionic cyan-white */
+
+    --card: 225 30% 11%;
+    --card-foreground: 185 80% 90%;
+
+    --popover: 225 30% 11%;
+    --popover-foreground: 185 80% 90%;
+
+    --primary: 187 100% 42%;         /* #00bcd4 cyan glow */
+    --primary-foreground: 225 35% 8%;
+
+    --secondary: 225 25% 18%;
+    --secondary-foreground: 185 80% 90%;
+
+    --muted: 225 25% 15%;
+    --muted-foreground: 210 20% 55%;
+
+    --accent: 270 60% 60%;           /* #9b59b6 psionic violet */
+    --accent-foreground: 185 80% 90%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 225 25% 20%;
+    --input: 225 25% 20%;
+    --ring: 187 100% 42%;
+
+    /* Sidebar */
+    --sidebar-background: 225 35% 6%;
+    --sidebar-foreground: 185 80% 90%;
+    --sidebar-primary: 187 100% 42%;
+    --sidebar-primary-foreground: 225 35% 8%;
+    --sidebar-accent: 225 25% 14%;
+    --sidebar-accent-foreground: 185 80% 90%;
+    --sidebar-border: 225 25% 16%;
+    --sidebar-ring: 187 100% 42%;
+
+    /* SC custom */
+    --sc-bg: #0a0e1a;
+    --sc-surface: #0f1628;
+    --sc-border: #00bcd4;
+    --sc-border-glow: rgba(0, 188, 212, 0.5);
+    --sc-accent: #00bcd4;
+    --sc-accent-glow: rgba(0, 188, 212, 0.4);
+    --sc-amber: #e67e22;
+    --sc-amber-glow: rgba(230, 126, 34, 0.4);
+    --sc-text: #c8f4f9;
+    --sc-text-muted: #4a6fa5;
+    --sc-danger: #e74c3c;
+    --sc-success: #2ecc71;
+    --sc-glow: 0 0 12px rgba(0,188,212,0.6), 0 4px 16px rgba(0,0,0,0.5);
+    --sc-corner: #00bcd4;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+  }
+  h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+/* ============================================================
+   SC COMPONENT UTILITIES
+   ============================================================ */
+
+/* Glow border card */
+.sc-panel {
+  background: var(--sc-surface);
+  border: 1px solid var(--sc-border);
+  box-shadow: var(--sc-glow);
+  border-radius: 4px;
+  position: relative;
+}
+
+/* Corner accent decoration */
+.sc-panel::before,
+.sc-panel::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: var(--sc-corner);
+  border-style: solid;
+}
+.sc-panel::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+.sc-panel::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
+/* Scanline overlay (dark mode only) */
+.dark .sc-scanlines {
+  position: relative;
+  overflow: hidden;
+}
+.dark .sc-scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,188,212,0.03) 2px,
+    rgba(0,188,212,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Glow text */
+.sc-glow-text {
+  color: var(--sc-accent);
+  text-shadow: 0 0 8px var(--sc-accent-glow);
+}
+
+/* Amber glow text */
+.sc-amber-text {
+  color: var(--sc-amber);
+  text-shadow: 0 0 8px var(--sc-amber-glow);
+}
+
+/* Status indicator dot */
+.sc-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.sc-dot.online  { background: var(--sc-success); box-shadow: 0 0 6px var(--sc-success); }
+.sc-dot.warning { background: var(--sc-amber);   box-shadow: 0 0 6px var(--sc-amber-glow); }
+.sc-dot.danger  { background: var(--sc-danger);  box-shadow: 0 0 6px var(--sc-danger); }
+
+/* Minimap sweep ring */
+.sc-sweep-ring {
+  position: absolute;
+  border: 1px solid var(--sc-accent);
+  border-radius: 50%;
+  opacity: 0;
+  animation: sweep-expand 3s ease-out infinite;
+}
+@keyframes sweep-expand {
+  0%   { transform: scale(0.3); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Data readout font */
+.sc-data {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--sc-text-muted);
+}
+
+/* Supply bar track */
+.sc-supply-track {
+  height: 6px;
+  background: var(--sc-surface);
+  border: 1px solid var(--sc-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.sc-supply-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sc-accent), var(--sc-accent-glow));
+  box-shadow: 0 0 6px var(--sc-accent-glow);
+  transition: width 0.5s ease;
+}
+
+/* Header bar */
+.sc-header {
+  background: var(--sc-surface);
+  border-bottom: 1px solid var(--sc-border);
+  box-shadow: 0 2px 12px var(--sc-border-glow);
+}
+
+/* Sidebar nav item */
+.sc-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--sc-text-muted);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.sc-nav-item:hover,
+.sc-nav-item.active {
+  background: var(--sc-surface);
+  color: var(--sc-accent);
+  border-left: 2px solid var(--sc-accent);
+  padding-left: calc(0.75rem - 2px);
+}
+
+/* Tooltip / badge chip */
+.sc-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border: 1px solid var(--sc-border);
+  border-radius: 2px;
+  font-size: 0.7rem;
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--sc-accent);
+  background: rgba(0,0,0,0.2);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--sc-bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--sc-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--sc-accent); }
